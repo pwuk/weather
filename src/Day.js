@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import Constants from './Constants';
 import Time from './Time';
-import PastTime from './PastTime';
+import EmptyTime from './EmptyTime';
 
 
 export default class extends Component {
 
 	render() {
 
-		let pastTimes = new Array(Constants.TIME_PERIODS -  this.props.data.times.length);
-		pastTimes.fill(0);
+		let emptyTimes = new Array(Constants.TIME_PERIODS -  this.props.data.times.length);
+		let emptyElements = emptyTimes.fill(0).map( (dummy, ndx) => {
+			return <EmptyTime key={ndx} />
+		});
+		let missingDataPast = false;
+
+		if(emptyTimes.length) {
+			if(this.props.data.times[0].dt_txt.slice(11,16) !== '00:00') {
+				missingDataPast = true;
+			}
+		}
 
 		return (
 			<div className="day">
@@ -18,16 +27,13 @@ export default class extends Component {
 					{this.getDaySummary(this.props.data.times)}
 				</div>
 				<div className="date-data">
-					{
-						pastTimes.map( (dummy, ndx) => {
-							return <PastTime key={ndx} />
-						})
-					}
+					{missingDataPast ? emptyElements : null}
 					{
 						this.props.data.times.map( (time, ndx) => {
 							return <Time key={ndx} data={time} units={this.props.units} />
 						})
 					}
+					{missingDataPast ? null : emptyElements}
 				</div>
 			</div>
 		);
