@@ -1,0 +1,96 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 50px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+body {
+	font-size:12px;
+	font-family:Tahoma, Verdana, Arial, Helvetica, Arial, sans-serif;
+	margin:10px;
+}
+
+ul {
+	list-style-type: none;
+	padding:0;
+}
+
+.date {
+	display:table-cell;
+	border:1px solid blue;
+	padding:2px;
+	text-align:center;
+	width:70px;
+}
+
+.date-data {
+	display:table-cell;
+	border:1px solid blue;
+	/*height:100px;*/
+	padding:2px;
+}
+
+
+.weather {
+	display:table;
+	width:100%;
+}
+
+.day {
+	display:table-row;
+}
+
+.data-times {
+	display: table;
+}
+
+.data-time, .data-time-past {
+	display: table-cell;
+	width:70px;
+	text-align: center;
+	padding:0 4px;
+	border-right:1px dotted;
+}
+
+.data-time-past {
+	background-color: #f1f1f1;
+}
+
+.date-data div:last-child {
+	border:0;
+}
+
+.date em {
+	display:block;
+}
+
+
+.data-time .temp em {
+	padding: 0;
+	display:block;
+}
+.data-time .temp .current {
+	font-weight:bold;
+}
+
+.unitselector div {
+	display:inline;
+	padding-left:10px;
+}
+.unitselector {
+	padding:10px;
+}
