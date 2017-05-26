@@ -17,7 +17,7 @@ export default class extends Component {
 						       defaultChecked
 						       onClick={()=>this.props.selectionChange(Constants.METRIC)}
 							/>
-							Centigrade / KPH
+							Centigrade and KPH
 						</label>
 					</div>
 					<div>
@@ -27,7 +27,7 @@ export default class extends Component {
 						       value={Constants.IMPERIAL}
 						       onClick={()=>this.props.selectionChange(Constants.IMPERIAL)}
 							/>
-							Farenheit / MPH
+							Farenheit and MPH
 						</label>
 					</div>
 				</form>
