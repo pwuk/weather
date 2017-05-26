@@ -53,6 +53,9 @@ ul {
 .day {
 	display:table-row;
 }
+.day-name {
+	font-weight:bold;
+}
 
 .data-times {
 	display: table;
@@ -94,4 +97,8 @@ ul {
 .unitselector {
 	padding:10px;
 	text-align:left;
+}
+
+.data-time .time {
+	font-weight: bold;
 }

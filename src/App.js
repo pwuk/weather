@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Weather from './Weather';
+import Constants from './Constants';
 
 class App extends Component {
 
@@ -8,7 +9,7 @@ class App extends Component {
 	  return (
 	      <div className="App">
             <div className="App-header">
-              <h2>Weather Data</h2>
+              <h2>Five Day {Constants.LOCATION_NAME} Weather Data</h2>
             </div>
 	        <Weather />
 	      </div>

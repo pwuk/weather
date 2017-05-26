@@ -1,6 +1,6 @@
 import Constants from './Constants';
 
-export default function (units = Constants.METRIC, callBack) {
+export default function (units = Constants.METRIC, callBack, errorCallback) {
 
 	let url = Constants.API_BASE_URL +
 				Constants.API_URL_PARAMS
@@ -11,4 +11,5 @@ export default function (units = Constants.METRIC, callBack) {
 	fetch(url)
 		.then((response) => response.json() )
 		.then(callBack)
+		.catch(errorCallback);
 }

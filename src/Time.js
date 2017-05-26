@@ -64,11 +64,14 @@ export default class extends Component {
 	getRain(obj) {
 		let value = <div />;
 		if(obj.rain && obj.rain['3h']) {
-			value = (
-				<p className="rain">
-					<em className="wind">3h Rain: {obj.rain['3h']}</em>
-				</p>
-			);
+			let rain = Math.round(Math.round(obj.rain['3h']*100)/100);
+			if(rain) {
+				value = (
+					<p className="rain">
+						<em className="wind">3h Rain: {rain}</em>
+					</p>
+				);
+			}
 		}
 		return value;
 	}

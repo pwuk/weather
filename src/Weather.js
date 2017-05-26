@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UnitSelector from './UnitSelector';
 import loadWeatherData from './DataAPI';
 import Day from './Day';
+import Error from './Error';
 
 export default class extends Component {
 
@@ -11,19 +12,24 @@ export default class extends Component {
 		this.state = {
 			units       : 'metric',
 			weatherData : [],
-			loading     : true
+			loading     : true,
+			error		: false
 		}
 
 	}
 
 	render() {
 		let widget;
+		
 		if(this.state.loading) {
 			widget= (
 				<div className="loading">
 					<img src="loading.gif" role="presentation"/>
 				</div>
 			);
+		}
+		else if(this.state.error) {
+			widget = (<Error msg={this.state.errorData} />);
 		}
 		else {
 			widget = (
@@ -38,6 +44,7 @@ export default class extends Component {
 					</div>
 				</div>
 			);
+			
 
 		}
 
@@ -45,19 +52,31 @@ export default class extends Component {
 	}
 
 	componentDidMount() {
-		loadWeatherData(this.state.units, (data) => {this.getWeatherData(data) } );
+		loadWeatherData(this.state.units, 
+			(data) => {this.getWeatherData(data)}, 
+			(data) => {this.handleError(data)} );
 	}
 
 	unitChangeHandler(units) {
 		this.setState(
 			{units},
 			() => {
-				loadWeatherData(this.state.units, (data) => {this.getWeatherData(data) })
+				loadWeatherData(this.state.units, 
+					(data) => {this.getWeatherData(data) }, 
+					(data) => {this.handleError(data)} )
 			}
 		) ;
 
 	}
 
+	handleError( error ) {
+		debugger;
+		this.setState( {
+			loading: false,
+			error: true,
+			errorData: 'Cannot acces the Weather Service'
+		})
+	}
 
 	getWeatherData(weatherData) {
 		this.setState( {
