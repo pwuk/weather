@@ -8,12 +8,14 @@ export default class extends Component {
 
 		return (
 			<div className="data-time">
+				<div className="time-inner">
 				<p className="time">{this.props.data.dt_txt.slice ( 11, 16 )}</p>
 				{this.getTemp ( this.props.data, this.props.units )}
 				{this.getWeather ( this.props.data )}
 				{this.getClouds ( this.props.data )}
 				{this.getWind ( this.props.data, this.props.units )}
 				{this.getRain ( this.props.data )}
+				</div>
 			</div>
 		);
 

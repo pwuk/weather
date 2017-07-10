@@ -9,6 +9,14 @@ export default {
 	API_LOCATION_ID : '2643743',
 	API_ACCESS_KEY  : '67c8d943a6b50ada4d9384d4e64d8a86',
 	LOCATION_NAME	: 'London',
+	LOCATIONS       : [
+		{ name: 'London',		id: 2643743 },
+		{ name: 'New York', 	id: 5128638 },
+		{ name: 'Moscow',  		id: 5601538 },
+		{ name: 'Chelmsford', 	id: 7290541 },
+		{ name: 'Los Angeles', 	id: 3882428 },
+		{ name: 'Tokyo',		id: 1850147 }
+	],
 
 	WEEK            : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 

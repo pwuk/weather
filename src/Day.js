@@ -22,19 +22,20 @@ export default class extends Component {
 
 		return (
 			<div className="day">
-				<div className="date">
-					{this.getDate(this.props.data.day)}
-					{this.getDaySummary(this.props.data.times)}
-				</div>
-				<div className="date-data">
-					{missingDataPast ? emptyElements : null}
-					{
-						this.props.data.times.map( (time, ndx) => {
-							return <Time key={ndx} data={time} units={this.props.units} />
-						})
-					}
-					{missingDataPast ? null : emptyElements}
-				</div>
+
+					<div className="date">
+						{this.getDate(this.props.data.day)}
+						{this.getDaySummary(this.props.data.times)}
+					</div>
+					<div className="date-data">
+						{missingDataPast ? emptyElements : null}
+						{
+							this.props.data.times.map( (time, ndx) => {
+								return <Time key={ndx} data={time} units={this.props.units} />
+							})
+						}
+						{missingDataPast ? null : emptyElements}
+					</div>
 			</div>
 		);
 	}

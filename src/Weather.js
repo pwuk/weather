@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UnitSelector from './UnitSelector';
+import LocationSelector from './LocationSelector';
 import loadWeatherData from './DataAPI';
 import Day from './Day';
 import Error from './Error';
@@ -12,6 +13,8 @@ export default class extends Component {
 		this.state = {
 			units       : 'metric',
 			weatherData : [],
+			cityId		: 2643743,
+			locationName: '',
 			loading     : true,
 			error		: false
 		}
@@ -34,7 +37,14 @@ export default class extends Component {
 		else {
 			widget = (
 				<div className="weather-widget">
-					<UnitSelector  selectionChange={(units)=>{this.unitChangeHandler(units)}}/>
+					<UnitSelector
+						selectionChange={(units)=>{this.unitChangeHandler(units)}}
+						defaultSelection={this.state.units}
+					/>
+					<LocationSelector
+						selectionChange={(cityId)=>{this.cityChangeHandler(cityId)}}
+						defaultSelection={this.state.cityId}
+					/>
 					<div>
 						{
 							this.state.weatherData.map( (dateObj)  => {
@@ -52,7 +62,7 @@ export default class extends Component {
 	}
 
 	componentDidMount() {
-		loadWeatherData(this.state.units, 
+		loadWeatherData(this.state.units, this.state.cityId,
 			(data) => {this.getWeatherData(data)}, 
 			(data) => {this.handleError(data)} );
 	}
@@ -61,7 +71,7 @@ export default class extends Component {
 		this.setState(
 			{units},
 			() => {
-				loadWeatherData(this.state.units, 
+				loadWeatherData(this.state.units, this.state.cityId,
 					(data) => {this.getWeatherData(data) }, 
 					(data) => {this.handleError(data)} )
 			}
@@ -69,12 +79,25 @@ export default class extends Component {
 
 	}
 
-	handleError( error ) {
+    cityChangeHandler(cityId) {
+        this.setState(
+            {cityId},
+            () => {
+                loadWeatherData(this.state.units, this.state.cityId,
+                    (data) => {this.getWeatherData(data) },
+                    (data) => {this.handleError(data)} )
+            }
+        ) ;
+
+    }
+
+
+    handleError( error ) {
 		debugger;
 		this.setState( {
 			loading: false,
 			error: true,
-			errorData: 'Cannot acces the Weather Service'
+			errorData: 'Cannot access the Weather Service'
 		})
 	}
 
