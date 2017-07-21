@@ -11,11 +11,10 @@ export default class extends Component {
 		super();
 
 		this.state = {
-			units       : 'metric',
-			weatherData : [],
-			cityId		: 2643743,
-			locationName: '',
-			loading     : true,
+			units       	: 'metric',
+			weatherData 	: [],
+			cityId	   	: 2643743,
+			loading     	: true,
 			error		: false
 		}
 
@@ -46,11 +45,9 @@ export default class extends Component {
 						defaultSelection={this.state.cityId}
 					/>
 					<div>
-						{
-							this.state.weatherData.map( (dateObj)  => {
-								return <Day key={dateObj.day} data={dateObj} units={this.state.units} />;
-							} )
-						}
+						{this.state.weatherData.map(
+								(dateObj) => <Day key={dateObj.day} data={dateObj} units={this.state.units} />
+						)}
 					</div>
 				</div>
 			);
@@ -62,19 +59,19 @@ export default class extends Component {
 	}
 
 	componentDidMount() {
-		loadWeatherData(this.state.units, this.state.cityId,
-			(data) => {this.getWeatherData(data)}, 
-			(data) => {this.handleError(data)} );
+		this.retrieveData()
+	}
+
+	retrieveData() {
+        loadWeatherData(this.state.units, this.state.cityId)
+            .then( (data) => {this.getWeatherData(data)} )
+            .catch((data) => {this.handleError(data)} );
 	}
 
 	unitChangeHandler(units) {
 		this.setState(
 			{units},
-			() => {
-				loadWeatherData(this.state.units, this.state.cityId,
-					(data) => {this.getWeatherData(data) }, 
-					(data) => {this.handleError(data)} )
-			}
+			() => this.retrieveData()
 		) ;
 
 	}
@@ -82,23 +79,18 @@ export default class extends Component {
     cityChangeHandler(cityId) {
         this.setState(
             {cityId},
-            () => {
-                loadWeatherData(this.state.units, this.state.cityId,
-                    (data) => {this.getWeatherData(data) },
-                    (data) => {this.handleError(data)} )
-            }
+            () => this.retrieveData()
         ) ;
 
     }
 
 
     handleError( error ) {
-		debugger;
 		this.setState( {
 			loading: false,
 			error: true,
 			errorData: 'Cannot access the Weather Service'
-		})
+		});
 	}
 
 	getWeatherData(weatherData) {
@@ -128,7 +120,7 @@ export default class extends Component {
 				return acc
 			}, [{}])
 			.reduce( (acc, obj) => {
-				Object.keys(obj).forEach((key) => {acc.push({day:key, times:obj[key]})});
+				Object.keys(obj).forEach( (key) => {acc.push( {day:key, times:obj[key]}) });
 				return acc;
 			}, []);
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Constants from './Constants';
+import PropTypes from 'prop-types';
 
 
-export default class extends Component {
+const LocationSelector = class extends Component {
 
     render() {
         let cities = Constants.LOCATIONS;
@@ -16,7 +17,7 @@ export default class extends Component {
                             <label>
                                 <input type="radio"
                                        name="city"
-                                       defaultChecked={city.id==this.props.defaultSelection}
+                                       defaultChecked={city.id===this.props.defaultSelection}
                                        onClick={()=>this.props.selectionChange(city.id)}
                                 />
                                 {city.name}
@@ -28,4 +29,6 @@ export default class extends Component {
         );
     }
 
-}
+};
+
+export default LocationSelector;
