@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Constants from './Constants';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 
-const UnitSelector  = class extends Component {
+export default function(props) {
 
-    render() {
         return (
 			<div className="unitselector">
 				<form>
@@ -16,7 +15,7 @@ const UnitSelector  = class extends Component {
 								   name="units"
 								   value={Constants.METRIC}
 								   defaultChecked
-								   onClick={() => this.props.selectionChange(Constants.METRIC)}
+								   onClick={() => props.selectionChange(Constants.METRIC)}
 							/>
 							Centigrade and KPH
 						</label>
@@ -26,17 +25,12 @@ const UnitSelector  = class extends Component {
 							<input type="radio"
 								   name="units"
 								   value={Constants.IMPERIAL}
-								   onClick={() => this.props.selectionChange(Constants.IMPERIAL)}
+								   onClick={() => props.selectionChange(Constants.IMPERIAL)}
 							/>
-							Farenheit and MPH
+							Fahrenheit and MPH
 						</label>
 					</div>
 				</form>
 			</div>
         );
-    }
 };
-
-
-export default UnitSelector;
-

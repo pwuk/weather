@@ -1,16 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
-export default class extends Component {
-
-	render() {
-
-		return (
-			<div className="data-time-past">
-				&nbsp;
-			</div>
-		);
-
-	}
-
-}
+export default () =>
+	<div className="data-time-past">
+		&nbsp;
+	</div>

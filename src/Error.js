@@ -1,13 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class extends Component {
-
-    render() {
-        return (
-            <div className="error">
-                <span>Error: {this.props.msg}</span>
-            </div>
-        );
-    }
-
+export default function(props) {
+    return (
+        <div className="error">
+            <span>Error: {props.msg}</span>
+        </div>
+    );
 }
